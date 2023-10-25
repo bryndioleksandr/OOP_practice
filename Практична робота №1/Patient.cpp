@@ -47,7 +47,8 @@ istream& operator>>(istream& is, Patient& patient){
     return is;
 }
 
-ostream& operator<<(ostream& os, Patient& patient){
+ostream& operator<<(ostream& os, Patient& patient)
+{
     os << "--------------------------\n";
     os << "ID: " <<patient.id <<"\n";
     os << "Surname: " << patient.surname<<"\n";
@@ -57,6 +58,13 @@ ostream& operator<<(ostream& os, Patient& patient){
     os << "Phone number: " << patient.phoneNumber <<"\n";
     os << "Medical card number: " << patient.medicalNumber<<"\n";
     os << "Diagnosis: " << patient.diagnosis<<"\n";
-    os << "--------------------------\n\n";
+    os << "-------------------------- \n\n";
     return os;
 }
+
+bool Patient::operator==(const Patient& other) const {
+    return (id == other.id) && (surname == other.surname) && (firstName == other.firstName)
+        && (lastName == other.lastName) && (address == other.address) && (phoneNumber == other.phoneNumber)
+        && (medicalNumber == other.medicalNumber) && (diagnosis == other.diagnosis);
+}
+
