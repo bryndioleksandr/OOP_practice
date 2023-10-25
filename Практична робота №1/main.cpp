@@ -8,5 +8,4 @@ int main()
 	else if (object1 == object2) cout << "Object1 equals to object2" << endl;
 	else if (object1 == object3) cout << "Object1 equals to object3" << endl;
 	else if (object2 == object3) cout << "Object2 equals to object3" << endl;
-	
 }
