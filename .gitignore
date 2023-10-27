@@ -31,6 +31,10 @@
 *.out
 *.app
 
+*.suo
+*.db 
+*.ipch
+
 *.ilk
 *.vcxproj
 *.vsidx
