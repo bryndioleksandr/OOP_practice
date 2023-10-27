@@ -1,16 +1,11 @@
 #pragma once
 
 #include <iostream>
+#include "Person.h"
 
 using namespace std;
 
-class Doctor {
-	int id;
-	string surname;
-	string firstName;
-	string lastName;
-	string address;
-	string phoneNumber;
+class Doctor: public Person {
 	string specialization;
 public:
 	Doctor();

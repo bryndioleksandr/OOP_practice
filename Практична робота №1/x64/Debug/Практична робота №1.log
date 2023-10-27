@@ -1,4 +1,5 @@
-﻿  main.cpp
-main.obj : error LNK2019: ссылка на неразрешенный внешний символ "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl operator<<(class std::basic_ostream<char,struct std::char_traits<char> > &,class Patient &)" (??6@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AEAV01@AEAVPatient@@@Z) в функции main.
-main.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: bool __cdecl Patient::operator==(class Patient const &)const " (??8Patient@@QEBA_NAEBV0@@Z) в функции main.
-C:\КН-321-23\Навчальна практика ООП\Практична робота №1\x64\Debug\Практична робота №1.exe : fatal error LNK1120: неразрешенных внешних элементов: 2
+﻿  Doctor.cpp
+  main.cpp
+  Person.cpp
+  Создание кода...
+  Практична робота №1.vcxproj -> C:\КН-321-23\Навчальна практика ООП\Практична робота №1\x64\Debug\Практична робота №1.exe
