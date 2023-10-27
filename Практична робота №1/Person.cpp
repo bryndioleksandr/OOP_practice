@@ -55,4 +55,3 @@ bool Person::operator==(const Person& other) const {
     return (id == other.id) && (surname == other.surname) && (firstName == other.firstName)
         && (lastName == other.lastName) && (address == other.address) && (phoneNumber == other.phoneNumber);
 }
-

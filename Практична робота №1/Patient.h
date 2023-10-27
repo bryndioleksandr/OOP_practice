@@ -1,17 +1,11 @@
 #pragma once
 
-#include <string>
+#include "Person.h"
 #include <iostream>
 
 using namespace std;
 
-class Patient {
-	int id;
-	string surname;
-	string firstName;
-	string lastName;
-	string address;
-	string phoneNumber;
+class Patient : public Person {
 	string medicalNumber;
 	string diagnosis;
 public:
