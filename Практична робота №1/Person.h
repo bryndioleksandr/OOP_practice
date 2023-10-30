@@ -19,4 +19,5 @@ public:
 	friend istream& operator>>(istream& is, Person& patient);
 	friend ostream& operator<<(ostream& os, Person& patient);
 	bool operator==(const Person& other) const;
+	virtual string toString() = 0;
 };

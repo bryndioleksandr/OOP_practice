@@ -14,7 +14,6 @@ istream& operator>>(istream& is, Patient& patient) {
     is >> static_cast<Person&>(patient);
     cout << "Enter Medical Number: ";
     is >> patient.medicalNumber;
-
     cout << "Enter Diagnosis: ";
     is >> patient.diagnosis;
     return is;
@@ -33,3 +32,6 @@ bool Patient::operator==(const Patient& other) const {
     return (Person::operator==(other) && medicalNumber == other.medicalNumber && diagnosis == other.diagnosis);
 }
 
+string Patient::toString() {
+    return medicalNumber, diagnosis;    
+}

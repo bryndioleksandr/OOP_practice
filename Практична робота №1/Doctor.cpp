@@ -29,3 +29,6 @@ bool Doctor::operator==(const Doctor& other) const {
     return (Person::operator==(other) && specialization == other.specialization);
 }
 
+string Doctor::toString() {
+    return specialization;
+}

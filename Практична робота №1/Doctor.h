@@ -15,4 +15,5 @@ public:
 	friend istream& operator>>(istream& is, Doctor& doctor);
 	friend ostream& operator<<(ostream& os, Doctor& doctor);
 	bool operator==(const Doctor& other) const;
+	string toString() override;
 };
