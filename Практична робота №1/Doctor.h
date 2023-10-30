@@ -16,4 +16,6 @@ public:
 	friend ostream& operator<<(ostream& os, Doctor& doctor);
 	bool operator==(const Doctor& other) const;
 	string toString() override;
+	void inputData()override;
+	void outputData()override;
 };

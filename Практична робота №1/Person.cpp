@@ -55,3 +55,33 @@ bool Person::operator==(const Person& other) const {
     return (id == other.id) && (surname == other.surname) && (firstName == other.firstName)
         && (lastName == other.lastName) && (address == other.address) && (phoneNumber == other.phoneNumber);
 }
+
+void Person::inputData() {
+    cout << "Enter ID: ";
+    cin >> id;
+
+    cout << "Enter Surname: ";
+    cin >> surname;
+
+    cout << "Enter First Name: ";
+    cin >> firstName;
+
+    cout << "Enter Last Name: ";
+    cin >> lastName;
+
+    cout << "Enter Address: ";
+    cin >> address;
+
+    cout << "Enter Phone Number: ";
+    cin >> phoneNumber;
+}
+
+void Person::outputData() {
+    cout << "--------------------------\n";
+    cout << "ID: " << id << "\n";
+    cout << "Surname: " << surname << "\n";
+    cout << "First name: " << firstName << "\n";
+    cout << "Last name: " << lastName << "\n";
+    cout << "Address: " << address << "\n";
+    cout << "Phone number: " << phoneNumber << "\n";
+}

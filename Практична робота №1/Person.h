@@ -16,6 +16,8 @@ public:
 	Person(int id, string surname, string firstName, string lastName, string address, string phoneNumber);
 	Person(const Person& other);
 	~Person();
+	virtual void inputData();
+	virtual void outputData();
 	friend istream& operator>>(istream& is, Person& patient);
 	friend ostream& operator<<(ostream& os, Person& patient);
 	bool operator==(const Person& other) const;

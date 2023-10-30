@@ -32,3 +32,16 @@ bool Doctor::operator==(const Doctor& other) const {
 string Doctor::toString() {
     return specialization;
 }
+
+void Doctor::inputData() {
+    Person::inputData();
+    cout << "Enter Specialization: ";
+    cin >> specialization;
+}
+
+void Doctor::outputData() {
+    cout << "\tDoctor\n";
+    Person::outputData();
+    cout << "Specialization: " << specialization << "\n";
+    cout << "-------------------------- \n\n";
+}

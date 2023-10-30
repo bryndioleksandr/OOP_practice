@@ -33,5 +33,21 @@ bool Patient::operator==(const Patient& other) const {
 }
 
 string Patient::toString() {
-    return medicalNumber, diagnosis;    
+    return medicalNumber + " " + diagnosis;
+}
+
+void Patient::inputData() {
+    Person::inputData();
+    cout << "Enter Medical Number: ";
+    cin >> medicalNumber;
+    cout << "Enter Diagnosis: ";
+    cin >> diagnosis;
+}
+
+void Patient::outputData() {
+    cout << "\tPatient\n";
+    Person::outputData();
+    cout << "Medical card number: " << medicalNumber << "\n";
+    cout << "Diagnosis: " << diagnosis << "\n";
+    cout << "-------------------------- \n\n";
 }
