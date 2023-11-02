@@ -21,7 +21,7 @@ int Vector<T>::getCapacity() {
 }
 
 template <typename T>
-void Vector<T>::push_back(const T element) {
+void Vector<T>::push_back(T element) {
     if (size < capacity) {
         array[size] = element;
     }

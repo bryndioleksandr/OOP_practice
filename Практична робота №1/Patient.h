@@ -12,7 +12,7 @@ public:
 	Patient();
 	Patient(int id, string surname, string firstName, string lastName, string address, string phoneNumber, string medicalNumber, string diagnosis);
 	Patient(const Patient& other);
-	~Patient();
+	~Patient()override;
 	friend istream& operator>>(istream& is, Patient& patient);
 	friend ostream& operator<<(ostream& os, Patient& patient);
 	bool operator==(const Patient& other) const;

@@ -14,10 +14,8 @@ public:
 	~Vector();
 	int getSize();
 	int getCapacity();
-	void createArr(int size, T* arr);
-	void push_back(const T element);
+	void push_back(T element);
 	void pop_back();
 	T at(int index);
-
 	T operator[](int index);
 };

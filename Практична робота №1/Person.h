@@ -15,7 +15,7 @@ public:
 	Person();
 	Person(int id, string surname, string firstName, string lastName, string address, string phoneNumber);
 	Person(const Person& other);
-	~Person();
+	virtual ~Person();
 	virtual void inputData();
 	virtual void outputData();
 	friend istream& operator>>(istream& is, Person& patient);
