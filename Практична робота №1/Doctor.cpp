@@ -10,6 +10,8 @@ Doctor::~Doctor() {
 
 }
 
+int Doctor::getId() { return Person::getId(); }
+
 istream& operator>>(istream& is, Doctor& doctor) {
     is >> static_cast<Person&>(doctor);
     cout << "Enter Specialization: ";

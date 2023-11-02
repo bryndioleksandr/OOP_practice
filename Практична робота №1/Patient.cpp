@@ -10,6 +10,8 @@ Patient::~Patient() {
 
 }
 
+int Patient::getId() {return Person::getId();}
+
 istream& operator>>(istream& is, Patient& patient) {
     is >> static_cast<Person&>(patient);
     cout << "Enter Medical Number: ";

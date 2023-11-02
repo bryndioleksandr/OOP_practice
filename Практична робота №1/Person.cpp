@@ -18,6 +18,9 @@ Person::~Person() {
 
 }
 
+int Person::getId() {
+    return id;
+}
 istream& operator>>(istream& is, Person& person) {
     cout << "Enter ID: ";
     is >> person.id;
