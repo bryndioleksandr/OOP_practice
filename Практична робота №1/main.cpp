@@ -70,7 +70,7 @@
 //	}
 //	cout << endl << endl;
 //}
-
+//
 template <typename T>
 void printList(const list<T>& ls) {
 	for (auto it = ls.begin(); it != ls.end(); it++) {
@@ -89,27 +89,27 @@ void showMapObj(map<int, Person*>& personMap) {
 	bool check = false;
 	if (!personMap.empty()) {
 		int enterId;
-		
-			cout << "Enter ID to see info about doctor or patient: ";
-			cin >> enterId;
-			for (const auto& pair : personMap) {
-				if (enterId == pair.first) {
-					int id = pair.first;
-					Person* person = pair.second;
 
-					cout << endl << "Here is a person with its ID #" << id <<":" << endl;
-					person->outputData();
-					check = true;
-				}
+		cout << "Enter ID to see info about doctor or patient: ";
+		cin >> enterId;
+		for (const auto& pair : personMap) {
+			if (enterId == pair.first) {
+				int id = pair.first;
+				Person* person = pair.second;
+
+				cout << endl << "Here is a person with its ID #" << id << ":" << endl;
+				person->outputData();
+				check = true;
 			}
-			if (!check) {
-				int choice;
-				cout << "Could not find any object with ID = " << enterId<<". Please, try again."<<endl;
-			}
-		
+		}
+		if (!check) {
+			int choice;
+			cout << "Could not find any object with ID = " << enterId << ". Please, try again." << endl;
+		}
+
 	}
 	else cout << "Map is empty!! Fill it, please." << endl;
-	
+
 }
 
 int main()
@@ -155,13 +155,13 @@ int main()
 	map<int, Person*> personMap;
 	Doctor doctor1, doctor2;
 	Patient patient1, patient2;
-	
+
 	int choice;
 	do {
 		cout << "\n\n\t\t\tMenu:\n\t1 - Enter data about objects into map\n\t2 - Print data about objects which are in map\n\t3 - Exit the program\n\tEnter your choice: ";
 		cin >> choice;
 		switch (choice) {
-		case 1: 
+		case 1:
 			cout << "Input data about patient1: " << endl;
 			inputIntoMap(personMap, patient1);
 			cout << "Input data about patient2: " << endl;
@@ -315,17 +315,35 @@ int main()
 		//	for (Patient* patient : newPatientVector) {
 		//		patient->outputData();
 		//	}
-		/*	for (auto it = personVector.begin(); it != personVector.end();) {
-				if (dynamic_cast<Doctor*>(*it) || dynamic_cast<Patient*>(*it)) {
-					delete* it;
-					it = personVector.erase(it);
-				}
-				else {
-					++it;
-				}
-			}
 
-			for (auto it = newDoctorVector.begin(); it != newDoctorVector.end();) {
+		//	vector<Person*> newDoctorVec(personVector);
+		//	vector<Person*> newPatientVec(personVector);
+
+		//	for (int i = 0; i < newDoctorVec.size();i++) {
+		//		if (dynamic_cast<Doctor*>(newDoctorVec[i])) {
+		//			newDoctorVec.erase(newDoctorVec.begin() + i);
+		//		}
+		//	}
+		//	cout << "Vector after erasing Doctor and Patient objects:\n";
+		//	for (Person* person : newDoctorVec) {
+		//		person->outputData();
+		//	}
+
+		//	for (int i = 0; i < newPatientVec.size(); i++) {
+		//		if (dynamic_cast<Patient*>(newPatientVec[i])) {
+		//			newPatientVec.erase(newPatientVec.begin() + i);
+		//		}
+		//	}
+
+		//	cout << "Vector after erasing Doctor and Patient objects:\n";
+		//	for (Person* person : newPatientVec) {
+		//		person->outputData();
+		//	}
+
+		//	
+
+
+			/*for (auto it = newDoctorVector.begin(); it != newDoctorVector.end();) {
 				delete* it;
 				it = newDoctorVector.erase(it);
 			}
@@ -333,12 +351,8 @@ int main()
 			for (auto it = newPatientVector.begin(); it != newPatientVector.end();) {
 				delete* it;
 				it = newPatientVector.erase(it);
-			}
-
-			cout << "Vector after erasing Doctor and Patient objects:\n";
-			for (Person* person : personVector) {
-				person->outputData();
 			}*/
+
 
 			/*int choice;
 			do {
@@ -389,8 +403,8 @@ int main()
 				}
 			} while (choice != 3);*/
 
-			/*
-			Vector<int> intVector;
+
+			/*Vector<int> intVector;
 			for (int i = 0; i < 20; i++) {
 				intVector.push_back(i * 3);
 			}
