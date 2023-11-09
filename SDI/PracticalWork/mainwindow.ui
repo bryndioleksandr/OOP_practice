@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="autoFillBackground">
-   <bool>false</bool>
+   <bool>true</bool>
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow{rgb(170, 44, 33);}
@@ -343,7 +343,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionCreate">
    <property name="icon">
-    <iconset resource="Resource.qrc">
+    <iconset>
      <normaloff>:/rec/img/1445149.png</normaloff>:/rec/img/1445149.png</iconset>
    </property>
    <property name="text">
@@ -352,7 +352,7 @@
   </action>
   <action name="actionPrint">
    <property name="icon">
-    <iconset resource="Resource.qrc">
+    <iconset>
      <normaloff>:/rec/img/72647.png</normaloff>:/rec/img/72647.png</iconset>
    </property>
    <property name="text">
@@ -361,7 +361,7 @@
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset resource="Resource.qrc">
+    <iconset>
      <normaloff>:/rec/img/123.png</normaloff>:/rec/img/123.png</iconset>
    </property>
    <property name="text">
@@ -369,9 +369,7 @@
    </property>
   </action>
  </widget>
- <resources>
-  <include location="Resource.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>pbCreate</sender>

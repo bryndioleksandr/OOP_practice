@@ -157,7 +157,6 @@ void MainWindow::on_pbShow_clicked()
         opDiagnosis->setGeometry(1, 281, 300, 24);
         opDiagnosis->setVisible(true);
         opDiagnosis->setFont(font);
-
     }
 }
 

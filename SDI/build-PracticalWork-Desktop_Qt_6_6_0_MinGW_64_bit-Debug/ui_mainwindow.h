@@ -75,7 +75,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(800, 600);
-        MainWindow->setAutoFillBackground(false);
+        MainWindow->setAutoFillBackground(true);
         MainWindow->setStyleSheet(QString::fromUtf8("QMainWindow{rgb(170, 44, 33);}\n"
 ""));
         actionCreate = new QAction(MainWindow);
