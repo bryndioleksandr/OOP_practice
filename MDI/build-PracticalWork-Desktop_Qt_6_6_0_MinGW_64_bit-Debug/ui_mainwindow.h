@@ -39,6 +39,7 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
     QLabel *label;
+    QLabel *label_3;
     QWidget *verticalLayoutWidget_4;
     QVBoxLayout *verticalLayout_5;
     QPushButton *createPatPb;
@@ -50,6 +51,10 @@ public:
     QWidget *verticalLayoutWidget_6;
     QVBoxLayout *verticalLayout_7;
     QPushButton *exitPb;
+    QWidget *verticalLayoutWidget_7;
+    QVBoxLayout *verticalLayout;
+    QPushButton *clearPatPb;
+    QPushButton *clearDocPb;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -57,7 +62,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(809, 600);
+        MainWindow->resize(961, 565);
         MainWindow->setAutoFillBackground(false);
         MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(250, 231, 255);"));
         centralwidget = new QWidget(MainWindow);
@@ -80,7 +85,7 @@ public:
 
         verticalLayoutWidget_2 = new QWidget(centralwidget);
         verticalLayoutWidget_2->setObjectName("verticalLayoutWidget_2");
-        verticalLayoutWidget_2->setGeometry(QRect(690, -10, 111, 71));
+        verticalLayoutWidget_2->setGeometry(QRect(850, -10, 111, 71));
         verticalLayout_3 = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout_3->setObjectName("verticalLayout_3");
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
@@ -93,7 +98,7 @@ public:
 
         verticalLayoutWidget_3 = new QWidget(centralwidget);
         verticalLayoutWidget_3->setObjectName("verticalLayoutWidget_3");
-        verticalLayoutWidget_3->setGeometry(QRect(140, 30, 511, 71));
+        verticalLayoutWidget_3->setGeometry(QRect(230, 20, 511, 71));
         verticalLayout_4 = new QVBoxLayout(verticalLayoutWidget_3);
         verticalLayout_4->setObjectName("verticalLayout_4");
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
@@ -111,7 +116,7 @@ public:
 
         horizontalLayoutWidget = new QWidget(centralwidget);
         horizontalLayoutWidget->setObjectName("horizontalLayoutWidget");
-        horizontalLayoutWidget->setGeometry(QRect(40, 110, 721, 80));
+        horizontalLayoutWidget->setGeometry(QRect(40, 110, 891, 80));
         horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -134,9 +139,17 @@ public:
 
         horizontalLayout_2->addWidget(label);
 
+        label_3 = new QLabel(horizontalLayoutWidget);
+        label_3->setObjectName("label_3");
+        label_3->setFont(font2);
+        label_3->setFrameShape(QFrame::WinPanel);
+        label_3->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_2->addWidget(label_3);
+
         verticalLayoutWidget_4 = new QWidget(centralwidget);
         verticalLayoutWidget_4->setObjectName("verticalLayoutWidget_4");
-        verticalLayoutWidget_4->setGeometry(QRect(110, 190, 211, 211));
+        verticalLayoutWidget_4->setGeometry(QRect(90, 190, 211, 211));
         verticalLayout_5 = new QVBoxLayout(verticalLayoutWidget_4);
         verticalLayout_5->setObjectName("verticalLayout_5");
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
@@ -161,7 +174,7 @@ public:
 
         verticalLayoutWidget_5 = new QWidget(centralwidget);
         verticalLayoutWidget_5->setObjectName("verticalLayoutWidget_5");
-        verticalLayoutWidget_5->setGeometry(QRect(480, 190, 211, 211));
+        verticalLayoutWidget_5->setGeometry(QRect(380, 190, 211, 211));
         verticalLayout_6 = new QVBoxLayout(verticalLayoutWidget_5);
         verticalLayout_6->setObjectName("verticalLayout_6");
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
@@ -183,7 +196,7 @@ public:
 
         verticalLayoutWidget_6 = new QWidget(centralwidget);
         verticalLayoutWidget_6->setObjectName("verticalLayoutWidget_6");
-        verticalLayoutWidget_6->setGeometry(QRect(280, 460, 243, 80));
+        verticalLayoutWidget_6->setGeometry(QRect(370, 440, 243, 80));
         verticalLayout_7 = new QVBoxLayout(verticalLayoutWidget_6);
         verticalLayout_7->setObjectName("verticalLayout_7");
         verticalLayout_7->setContentsMargins(0, 0, 0, 0);
@@ -197,10 +210,30 @@ public:
 
         verticalLayout_7->addWidget(exitPb);
 
+        verticalLayoutWidget_7 = new QWidget(centralwidget);
+        verticalLayoutWidget_7->setObjectName("verticalLayoutWidget_7");
+        verticalLayoutWidget_7->setGeometry(QRect(660, 190, 258, 211));
+        verticalLayout = new QVBoxLayout(verticalLayoutWidget_7);
+        verticalLayout->setObjectName("verticalLayout");
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        clearPatPb = new QPushButton(verticalLayoutWidget_7);
+        clearPatPb->setObjectName("clearPatPb");
+        clearPatPb->setFont(font3);
+        clearPatPb->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 144);"));
+
+        verticalLayout->addWidget(clearPatPb);
+
+        clearDocPb = new QPushButton(verticalLayoutWidget_7);
+        clearDocPb->setObjectName("clearDocPb");
+        clearDocPb->setFont(font3);
+        clearDocPb->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 144);"));
+
+        verticalLayout->addWidget(clearDocPb);
+
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 809, 21));
+        menubar->setGeometry(QRect(0, 0, 961, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -214,16 +247,19 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        designLb1->setText(QCoreApplication::translate("MainWindow", "PR10", nullptr));
-        designLb2->setText(QCoreApplication::translate("MainWindow", "PR10", nullptr));
+        designLb1->setText(QCoreApplication::translate("MainWindow", "PR11", nullptr));
+        designLb2->setText(QCoreApplication::translate("MainWindow", "PR11", nullptr));
         designLb3->setText(QCoreApplication::translate("MainWindow", "Well, what to do?", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "CREATE OBJECT", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "PRINT OBJECT", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "CLEAR DATABASE", nullptr));
         createPatPb->setText(QCoreApplication::translate("MainWindow", "Create Patient", nullptr));
         createDocPb->setText(QCoreApplication::translate("MainWindow", "Create Doctor", nullptr));
         showPatPb->setText(QCoreApplication::translate("MainWindow", "Show Patient", nullptr));
         showDocPb->setText(QCoreApplication::translate("MainWindow", "Show Doctor", nullptr));
         exitPb->setText(QCoreApplication::translate("MainWindow", "Exit the program", nullptr));
+        clearPatPb->setText(QCoreApplication::translate("MainWindow", "Clear Patients` data", nullptr));
+        clearDocPb->setText(QCoreApplication::translate("MainWindow", "Clear Doctors` data", nullptr));
     } // retranslateUi
 
 };

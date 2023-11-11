@@ -48,7 +48,7 @@ public:
     {
         if (CreateDoc->objectName().isEmpty())
             CreateDoc->setObjectName("CreateDoc");
-        CreateDoc->resize(432, 470);
+        CreateDoc->resize(432, 493);
         verticalLayout = new QVBoxLayout(CreateDoc);
         verticalLayout->setObjectName("verticalLayout");
         label = new QLabel(CreateDoc);

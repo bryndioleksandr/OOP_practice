@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,7 +17,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     showdoc.cpp \
-    showpat.cpp
+    showpat.cpp \
+    sqlitedbmanager.cpp
 
 HEADERS += \
     Doctor.h \
@@ -25,9 +26,11 @@ HEADERS += \
     Person.h \
     createdoc.h \
     createpat.h \
+    dbmanager.h \
     mainwindow.h \
     showdoc.h \
-    showpat.h
+    showpat.h \
+    sqlitedbmanager.h
 
 FORMS += \
     createdoc.ui \

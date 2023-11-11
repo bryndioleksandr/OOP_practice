@@ -13,7 +13,8 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QListWidget>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QTableView>
 
 QT_BEGIN_NAMESPACE
 
@@ -21,23 +22,20 @@ class Ui_ShowDoc
 {
 public:
     QHBoxLayout *horizontalLayout;
-    QListWidget *listWidgetDoc;
+    QTableView *tableViewDoc;
 
     void setupUi(QDialog *ShowDoc)
     {
         if (ShowDoc->objectName().isEmpty())
             ShowDoc->setObjectName("ShowDoc");
-        ShowDoc->resize(567, 500);
+        ShowDoc->resize(622, 500);
+        ShowDoc->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         horizontalLayout = new QHBoxLayout(ShowDoc);
         horizontalLayout->setObjectName("horizontalLayout");
-        listWidgetDoc = new QListWidget(ShowDoc);
-        listWidgetDoc->setObjectName("listWidgetDoc");
-        QFont font;
-        font.setFamilies({QString::fromUtf8("Bahnschrift SemiLight SemiConde")});
-        font.setPointSize(14);
-        listWidgetDoc->setFont(font);
+        tableViewDoc = new QTableView(ShowDoc);
+        tableViewDoc->setObjectName("tableViewDoc");
 
-        horizontalLayout->addWidget(listWidgetDoc);
+        horizontalLayout->addWidget(tableViewDoc);
 
 
         retranslateUi(ShowDoc);

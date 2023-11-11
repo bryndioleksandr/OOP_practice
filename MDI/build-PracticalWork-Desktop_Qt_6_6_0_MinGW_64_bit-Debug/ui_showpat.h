@@ -13,7 +13,8 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QListWidget>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QTableView>
 
 QT_BEGIN_NAMESPACE
 
@@ -21,23 +22,20 @@ class Ui_ShowPat
 {
 public:
     QHBoxLayout *horizontalLayout;
-    QListWidget *listWidgetSas;
+    QTableView *tableViewPat;
 
     void setupUi(QDialog *ShowPat)
     {
         if (ShowPat->objectName().isEmpty())
             ShowPat->setObjectName("ShowPat");
-        ShowPat->resize(501, 473);
+        ShowPat->resize(670, 473);
+        ShowPat->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         horizontalLayout = new QHBoxLayout(ShowPat);
         horizontalLayout->setObjectName("horizontalLayout");
-        listWidgetSas = new QListWidget(ShowPat);
-        listWidgetSas->setObjectName("listWidgetSas");
-        QFont font;
-        font.setFamilies({QString::fromUtf8("Bahnschrift SemiLight SemiConde")});
-        font.setPointSize(14);
-        listWidgetSas->setFont(font);
+        tableViewPat = new QTableView(ShowPat);
+        tableViewPat->setObjectName("tableViewPat");
 
-        horizontalLayout->addWidget(listWidgetSas);
+        horizontalLayout->addWidget(tableViewPat);
 
 
         retranslateUi(ShowPat);
