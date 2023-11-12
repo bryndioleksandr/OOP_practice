@@ -26,7 +26,6 @@ bool CreatePat::checkFields(){
 void CreatePat::on_confirmPatPb_clicked()
 {
     SqliteDBManager* db= SqliteDBManager::getInstance();
-    db->connectToDataBase();
     id = ui->idLn->text();
     surname = ui->surnameLn->text();
     firstName = ui->firstNameLn->text();
@@ -36,22 +35,9 @@ void CreatePat::on_confirmPatPb_clicked()
     medicalNumber = ui->medNumLn->text();
     diagnosis = ui->diagnosisLn->text();
 
-    /*if (checkFields()) {
-        newPatient = new Patient(id.toInt(), firstName.toStdString(), surname.toStdString(), lastName.toStdString(), address.toStdString(), phoneNumber.toStdString(), medicalNumber.toStdString(), diagnosis.toStdString());
-        emit patientCreated(newPatient);
-        QMessageBox::StandardButton reply;
-        reply = QMessageBox::information(this, "Created successful!", "Now object is created! Close this window to look out the printed data.", QMessageBox::Yes | QMessageBox::No);
-        if (reply == QMessageBox::Yes) {
-            accept();
-        }
-    } else {
-        QMessageBox::warning(this, "Error due to input data :(", "Some fields are empty, please fill them all!!!");
-    }*/
 
+    try {
         if (checkFields()) {
-        //        newDoctor = new Doctor(id.toInt(), firstName.toStdString(), surname.toStdString(), lastName.toStdString(), address.toStdString(), phoneNumber.toStdString(), specialization.toStdString());
-        //        emit doctorCreated(newDoctor);
-
         Patient pat;
         pat.setId(id.toInt());
         pat.setSurname(surname.toStdString());
@@ -73,6 +59,10 @@ void CreatePat::on_confirmPatPb_clicked()
         }
         } else {
         QMessageBox::warning(this, "Error due to input data :(", "Some fields are empty, please fill them all!!!");
+        throw std::runtime_error("Error in inputing data:(");
         }
+}catch(const std::exception &ex){
+        qWarning() << "Exception in inputing data: " << ex.what();
+}
 
 }

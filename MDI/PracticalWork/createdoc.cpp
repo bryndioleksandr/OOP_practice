@@ -25,7 +25,6 @@ bool CreateDoc::checkFields(){
 void CreateDoc::on_confirmDocPb_clicked()
 {
     SqliteDBManager* db= SqliteDBManager::getInstance();
-    db->connectToDataBase();
     id = ui->idLn->text();
     surname = ui->surnameLn->text();
     firstName = ui->firstNameLn->text();
@@ -33,7 +32,7 @@ void CreateDoc::on_confirmDocPb_clicked()
     address = ui->addressLn->text();
     phoneNumber = ui->phoneNumLn->text();
     specialization = ui->specializationLn->text();
-
+    try{
     if (checkFields()) {
     Doctor doc;
     doc.setId(id.toInt());
@@ -56,29 +55,12 @@ void CreateDoc::on_confirmDocPb_clicked()
     }
  else {
     QMessageBox::warning(this, "Error due to input data :(", "Some fields are empty, please fill them all!!!");
+    throw std::runtime_error("Error in inputing data:(");
+    }
+    }catch(const std::exception &ex){
+    qWarning() << "Exception in inputing data: " << ex.what();
+    }
 }
-
-}
-
-
-
-/*or(int i = 0; i < 4; i++){
-
-        int random = rand(); // Отримуємо випадкові цілі числа для вставки в базу даних
-        data.append(QDate::currentDate()); // Отримуємо сьогоднішню дату для вставки в БД
-        data.append(QTime::currentTime()); // Отримуємо поточний час для вставки в БД
-        // Поміщаємо отримане випадкове число в QVariantList
-        data.append(random);
-        // Поміщаємо повідомлення в QVariantList
-        data.append("Отримано повідомлення від " + QString::number(random));
-        // Вставляємо дані в БД
-        db->inserIntoTable(TABLE_EXAMPLE, data);
-    }*/
-
-    /* Ініціалізуємо модель для представлення даних
-     * із вказанням назв стовпців
-     * */
-
 
 
 
