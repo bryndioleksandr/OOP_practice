@@ -17,6 +17,7 @@ CreatePat::~CreatePat()
 bool CreatePat::checkFields(){
     bool check = false;
     if(ui->idLn->text().isEmpty() || ui->surnameLn->text().isEmpty() || ui->firstNameLn->text().isEmpty() || ui->lastNameLn->text().isEmpty() || ui->addressLn->text().isEmpty() ||ui->phoneNumLn->text().isEmpty() || ui->medNumLn->text().isEmpty() || ui->diagnosisLn->text().isEmpty()){
+        throw std::runtime_error("Error in inputing data about Patient:( some fields are empty");
         check = false;
     }
     else check = true;
@@ -35,7 +36,6 @@ void CreatePat::on_confirmPatPb_clicked()
     medicalNumber = ui->medNumLn->text();
     diagnosis = ui->diagnosisLn->text();
 
-
     try {
         if (checkFields()) {
         Patient pat;
@@ -47,21 +47,21 @@ void CreatePat::on_confirmPatPb_clicked()
         pat.setPhoneNumber(phoneNumber.toStdString());
         pat.setMedicalNumber(medicalNumber.toStdString());
         pat.setDiagnosis(diagnosis.toStdString());
-
+        try{
         if (db->insertIntoTablePatient(pat)) {
             QMessageBox::StandardButton reply;
             reply = QMessageBox::information(this, "Created successful!", "Now object is created and data is saved in the database! Close this window to look out the printed data.", QMessageBox::Yes | QMessageBox::No);
             if (reply == QMessageBox::Yes) {
                 accept();
             }
-        } else {
+        }
+        }catch(const std::exception &e){
             QMessageBox::warning(this, "Error due to database operation :(", "Data couldn't be saved in the database!");
+            qCritical() << "Exception in: " << e.what();
         }
-        } else {
+        }
+    }catch(const std::exception &ex){
         QMessageBox::warning(this, "Error due to input data :(", "Some fields are empty, please fill them all!!!");
-        throw std::runtime_error("Error in inputing data:(");
-        }
-}catch(const std::exception &ex){
         qWarning() << "Exception in inputing data: " << ex.what();
 }
 

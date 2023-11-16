@@ -22,19 +22,10 @@ SqliteDBManager* SqliteDBManager::getInstance()
 
 void SqliteDBManager::connectToDataBase()
 {
-    try {
-        if (QFile(DATABASE_NAME).exists()) {
-            if (!this->openDataBase()) {
-                throw std::runtime_error("Failed to open the database");
-            }
-        } else {
-            if (!this->restoreDataBase()) {
-                throw std::runtime_error("Failed to restore the database");
-            }
-        }
-    } catch (const std::exception& ex) {
-        qCritical() << "Exception in connectToDataBase: " << ex.what();
-    }
+    try{
+        if (QFile(DATABASE_NAME).exists()) this->openDataBase();
+        else this->restoreDataBase();
+    }catch(const std::exception &ex){throw;}
 }
 
 QSqlDatabase SqliteDBManager::getDB()
@@ -42,7 +33,7 @@ QSqlDatabase SqliteDBManager::getDB()
     return db;
 }
 
-// Метод відновлення бази даних
+
 bool SqliteDBManager::restoreDataBase()
 {
     try {
@@ -53,17 +44,15 @@ bool SqliteDBManager::restoreDataBase()
                 return true;
             }
         } else {
-            throw std::runtime_error("Failed to restore the database");
+            throw std::runtime_error("Failed to restore database");
         }
-    } catch (const std::exception& ex) {
-        qCritical() << "Exception in restoreDataBase: " << ex.what();
-        return false;
+    } catch(const std::exception &ex) {
+        throw;
     }
 }
 
 bool SqliteDBManager::openDataBase()
 {
-    try {
         db = QSqlDatabase::addDatabase("QSQLITE");
         db.setHostName(DATABASE_HOSTNAME);
         db.setDatabaseName(DATABASE_NAME);
@@ -72,14 +61,8 @@ bool SqliteDBManager::openDataBase()
             return true;
         } else {
             throw std::runtime_error("Failed to open database");
+            return false;
         }
-    } catch (const std::exception &ex) {
-        qCritical() << "Exception in openDataBase: " << ex.what();
-        return false;
-    } catch (const QSqlError &sqlError) {
-        qCritical() << "SQL Error in openDataBase: " << sqlError.text();
-        return false;
-    }
 }
 
 void SqliteDBManager::closeDataBase()
@@ -89,9 +72,12 @@ void SqliteDBManager::closeDataBase()
 
 bool SqliteDBManager::createTables()
 {
-    try{
     QSqlQuery query;
     bool success = true;
+    if (db.tables().contains(TABLE_PATIENTS) || db.tables().contains(TABLE_DOCTORS)) {
+            throw std::runtime_error("Tables already exist. Skipping creation");
+            return false;
+    }
     if(!query.exec( "CREATE TABLE " TABLE_PATIENTS"("
                     TABLE_ID " INT NOT NULL, "
                     TABLE_SURNAME " TEXT NOT NULL,"
@@ -103,7 +89,7 @@ bool SqliteDBManager::createTables()
                     TABLE_DIAGNOSIS " TEXT NOT NULL"
                     " )"
                     )){
-        throw std::runtime_error("Error creating Patients table");
+        throw std::runtime_error("Error in creating Patients` table");
         success = false;
     }
     if(!query.exec( "CREATE TABLE " TABLE_DOCTORS"("
@@ -116,21 +102,16 @@ bool SqliteDBManager::createTables()
                     TABLE_SPECIALIZATION " TEXT NOT NULL"
                     " )"
                     )){
-        throw std::runtime_error("Error creating Doctors table");
+        throw std::runtime_error("Error in creating Doctors` table");
         success = false;
     }
         return success;
-    } catch (const std::exception &ex) {
-        qCritical() << "Exception in createTables: " << ex.what();
-        return false;
-    }
 }
 
 bool SqliteDBManager::insertIntoTablePatient(Patient& pat)
 {
     QSqlQuery query;
-    try{
-        qInfo() << TABLE_PATIENTS<<" table is created\n";
+        qInfo() << TABLE_PATIENTS<<" table\n";
         query.prepare("INSERT INTO " TABLE_PATIENTS " ("
                       TABLE_ID ", "
                       TABLE_SURNAME ", "
@@ -151,20 +132,18 @@ bool SqliteDBManager::insertIntoTablePatient(Patient& pat)
         query.bindValue(":diagnosis", QString::fromStdString(pat.getDiagnosis()));
 
         if (!query.exec()) {
-        throw std::runtime_error("Error inserting into Patients table");
-        } else
-        return true; } catch (const std::exception &ex) {
-        qCritical() << "Exception in SqliteDBManager::insertIntoTablePatient: " << ex.what();
+        throw std::runtime_error("Error inserting into Patients` table");
         return false;
-}
+        } else
+        return true;
+
 
 }
 
 bool SqliteDBManager::insertIntoTableDoctor(Doctor& doc)
 {
-try{
     QSqlQuery query;
-                qInfo() << TABLE_DOCTORS<<" table is created";
+                qInfo() << TABLE_DOCTORS<<" table";
                 query.prepare("INSERT INTO " TABLE_DOCTORS " ( "
                               TABLE_ID ", "
                               TABLE_SURNAME ", "
@@ -183,47 +162,39 @@ try{
     query.bindValue(":phoneNumber", QString::fromStdString(doc.getPhoneNumber()));
     query.bindValue(":specialization", QString::fromStdString(doc.getSpecialization()));
 
-        if (!query.exec()) {
-        throw std::runtime_error("Error inserting into Doctors table");
-    } else return true;
-    }catch (const std::exception &ex) {
-    qCritical() << "Exception in SqliteDBManager::insertIntoTableDoctor: " << ex.what();
-    return false;
-    }
+    if (!query.exec()) {
+        throw std::runtime_error("Error inserting into Doctors` table");
+        return false;
+    } else
+        return true;
 }
 
 bool SqliteDBManager::clearPatientsTable() {
-    try {
     QSqlQuery query;
-
+    if (db.tables().contains(TABLE_PATIENTS)) {
     if (query.exec("DELETE FROM " TABLE_PATIENTS)) {
         return true;
     } else {
-        throw std::runtime_error("Error clearing Patients table");
+        throw std::runtime_error("Error in clearing Patients` table");
+        return false;
     }
-    } catch (const QSqlError &sqlError) {
-    qCritical() << "SQL Error in clearDoctorsTable: " << sqlError.text();
-    return false;
-    } catch (const std::exception &ex) {
-    qCritical() << "Exception in SqliteDBManager::clearPatientsTable: " << ex.what();
+    } else{
+    throw std::runtime_error("Patients` table doesn`t exist, nothing to clear");
     return false;
     }
 }
 
 bool SqliteDBManager::clearDoctorsTable() {
-    try {
         QSqlQuery query;
-
+    if (db.tables().contains(TABLE_DOCTORS)) {
         if (query.exec("DELETE FROM " TABLE_DOCTORS)) {
         return true;
         } else {
-        throw std::runtime_error("Error clearing Doctors table");
-        }
-    }catch (const QSqlError &sqlError) {
-        qCritical() << "SQL Error in clearDoctorsTable: " << sqlError.text();
+        throw std::runtime_error("Error in clearing Doctors` table");
         return false;
-    }catch (const std::exception &ex) {
-        qCritical() << "Exception in SqliteDBManager::clearDoctorsTable: " << ex.what();
+        }
+    } else{
+        throw std::runtime_error("Doctors` table doesn`t exist, nothing to clear");
         return false;
     }
 }

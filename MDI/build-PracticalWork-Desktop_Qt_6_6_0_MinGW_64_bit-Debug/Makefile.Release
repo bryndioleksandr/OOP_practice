@@ -2161,6 +2161,12 @@ release/main.o: ../PracticalWork/main.cpp ../PracticalWork/mainwindow.h \
 		../PracticalWork/dbmanager.h \
 		../PracticalWork/showdoc.h \
 		../PracticalWork/showpat.h \
+		../PracticalWork/Logger.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QDebug \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QFile \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qfile.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QHash \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QApplication \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qapplication.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qcoreapplication.h \
@@ -2442,6 +2448,12 @@ release/mainwindow.o: ../PracticalWork/mainwindow.cpp ../PracticalWork/mainwindo
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QStatusBar \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qstatusbar.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QVBoxLayout \
+		../PracticalWork/Logger.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QDebug \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QFile \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qfile.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qfiledevice.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QHash \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/QDateTime \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qdatetime.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qcalendar.h

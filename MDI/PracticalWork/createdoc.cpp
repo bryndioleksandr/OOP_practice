@@ -16,6 +16,7 @@ CreateDoc::~CreateDoc()
 bool CreateDoc::checkFields(){
     bool check = false;
     if(ui->idLn->text().isEmpty() || ui->surnameLn->text().isEmpty() || ui->firstNameLn->text().isEmpty() || ui->lastNameLn->text().isEmpty() || ui->addressLn->text().isEmpty() ||ui->phoneNumLn->text().isEmpty() || ui->specializationLn->text().isEmpty()){
+        throw std::runtime_error("Error in inputing data about Doctor:( some fields are empty");
         check = false;
     }
     else check = true;
@@ -32,34 +33,37 @@ void CreateDoc::on_confirmDocPb_clicked()
     address = ui->addressLn->text();
     phoneNumber = ui->phoneNumLn->text();
     specialization = ui->specializationLn->text();
-    try{
-    if (checkFields()) {
-    Doctor doc;
-    doc.setId(id.toInt());
-    doc.setSurname(surname.toStdString());
-    doc.setFirstName(firstName.toStdString());
-    doc.setLastName(lastName.toStdString());
-    doc.setAddress(address.toStdString());
-    doc.setPhoneNumber(phoneNumber.toStdString());
-    doc.setSpecialization(specialization.toStdString());
 
-    if (db->insertIntoTableDoctor(doc)) {
-        QMessageBox::StandardButton reply;
-        reply = QMessageBox::information(this, "Created successful!", "Now object is created and data is saved in the database! Close this window to look out the printed data.", QMessageBox::Yes | QMessageBox::No);
-        if (reply == QMessageBox::Yes) {
-            accept();
-        }
-    } else {
+    try{
+        if (checkFields()) {
+        Doctor doc;
+        doc.setId(id.toInt());
+        doc.setSurname(surname.toStdString());
+        doc.setFirstName(firstName.toStdString());
+        doc.setLastName(lastName.toStdString());
+        doc.setAddress(address.toStdString());
+        doc.setPhoneNumber(phoneNumber.toStdString());
+        doc.setSpecialization(specialization.toStdString());
+
+        try{
+            if (db->insertIntoTableDoctor(doc)) {
+                QMessageBox::StandardButton reply;
+                reply = QMessageBox::information(this, "Created successful!", "Now object is created and data is saved in the database! Close this window to look out the printed data.", QMessageBox::Yes | QMessageBox::No);
+                if (reply == QMessageBox::Yes) {
+                    accept();
+                }
+            }
+        }catch(const std::exception &e){
         QMessageBox::warning(this, "Error due to database operation :(", "Data couldn't be saved in the database!");
-    }
-    }
- else {
-    QMessageBox::warning(this, "Error due to input data :(", "Some fields are empty, please fill them all!!!");
-    throw std::runtime_error("Error in inputing data:(");
-    }
+        qCritical() << "Exception in: " << e.what();
+        }
+        }
     }catch(const std::exception &ex){
-    qWarning() << "Exception in inputing data: " << ex.what();
+        QMessageBox::warning(this, "Error due to input data :(", "Some fields are empty, please fill them all!!!");
+        qWarning() << "Exception in inputing data: " << ex.what();
     }
+
+
 }
 
 
